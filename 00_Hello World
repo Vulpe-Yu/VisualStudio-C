@@ -1,0 +1,8 @@
+include <stdio.h> //標頭檔，宣告使用之預設函式庫。
+
+int main() //主函式。
+{
+printf("Hello World .");
+}
+
+//printf：輸出指令，輸出小括號內資訊，雙引號內視為文字。
