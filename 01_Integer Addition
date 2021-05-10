@@ -1,0 +1,14 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+int x, y, z; //定義整數變數x、y、z。
+printf("輸入兩個整數\n");
+printf("x=");
+scanf_s("%d", &x); //讀入整數變數x，格式("資料類型",&資料名稱)。
+printf("y=");
+scanf_s("%d", &y);
+z = x + y; //定義z為x+y。
+printf("x+y=%d", z); //輸出整數變數z，格式("資料類型",資料名稱)。
+}
