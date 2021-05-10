@@ -1,0 +1,22 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h> //使用該標頭檔取得根號運算功能。
+
+int main()
+{
+float a, b, c, d, x, y; //定義浮點數變數。
+printf("輸入ax^2+bx+c=0之各項係數\n");
+printf("a=");
+scanf_s("%f", &a); //讀入浮點數變數a，格式("資料類型",&資料名稱)。
+printf("b=");
+scanf_s("%f", &b);
+printf("c=");
+scanf_s("%f", &c);
+d = sqrt(static_cast<__int64>(b)* static_cast<__int64>(b) - 4* static_cast<__int64>(a)* static_cast<__int64>(c)); //定義d為√(b^2-4ac)。
+x = (-b + d) / (2 * static_cast<__int64>(a));
+y = (-b - d) / (2 * static_cast<__int64>(a)); //求出兩根之值，定義為x及y。
+printf("解：x=%f,%f", x, y); //輸出運算結果。
+}
+
+//在浮點數乘法中使用static_cast<__int64>(變數名稱)，以避免溢位。
+//警告C26451：算術溢位。
