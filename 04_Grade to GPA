@@ -1,0 +1,41 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+	printf("請輸入等第(英文大寫)\n");
+	char Grade; //定義字元變數Grade。
+	printf("等第：");
+	scanf_s("%c", &Grade, sizeof(Grade)); //需補上變數大小sizeof(變數名稱)，避免遺漏寬度引數。
+	switch (Grade) //Switch Case格式：switch(變數名稱)。
+	{
+	case 'A': //Case格式：case 變數值，字元則加單引號。
+		printf("A+：4.3\n");
+		printf("A：4.0\n");
+		printf("A-：3.7\n");
+		break; //結束此Switch Case。
+	case 'B':
+		printf("B+：3.3\n");
+		printf("B：3.0\n");
+		printf("B-：2.7\n");
+		break;
+	case 'C':
+		printf("C+：2.3\n");
+		printf("C：2.0\n");
+		printf("C-：1.7\n");
+		break;
+	case 'D':
+		printf("D：1.0\n");
+		break;
+	case 'E':
+		printf("E：0\n");
+		break;
+	default: //不符合以上所有Case。
+		printf("Grade Error，無對應GPA值。");
+		break;
+	}
+}
+
+//Switch Case須包含所有狀況。
+//輸入字元格式為scanf_s("變數類型", 變數位址, 變數大小);，避免遺漏寬度引數。
+//警告C6064：遺漏引數。
