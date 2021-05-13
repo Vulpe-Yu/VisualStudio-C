@@ -1,0 +1,53 @@
+#include <stdio.h>
+#include <stdlib.h> //內含亂數產生器功能。
+
+int main()
+{
+	int Range, Num, i;
+	int Yours[100];
+	printf("彩券數字範圍(100以內)：1~"); //彩券數字範圍=Range。
+	scanf_s("%d", &Range);
+	printf("中獎數字個數(小於彩券數字範圍)："); //中獎數字個數=Num。
+	scanf_s("%d", &Num);
+	printf("你的數字(以空白鍵分隔)：");
+	for (i = 0; i < Num; i++) //輸入所購買之彩票數字。
+	{
+		scanf_s("%d", &Yours[i]);
+	}
+	printf("==========開獎結果==========\n");
+	int Draw[100];
+	int j;
+	for (i = 0; i < Num; i++) //決定開獎數字。
+	{
+		int Error = 0; //作為識別開獎數字是否有重複用。
+		Draw[i]= 1 + rand() % Range;
+		for (j = 0; j < i; j++) //確認是否與已經開出之數字有重複。
+		{
+			if (Draw[i] == Draw[j]) Error++; //若有重複，Error=1。
+			else Error = Error;
+		}
+		if (Error == 0) i = i; //沒有重複，正常執行。
+		else i--; //有重複，重新決定該項數字。
+	}
+	printf("中獎數字："); //輸出中獎數字。
+	for (i = 0; i < Num; i++)
+	{
+		char dot;
+		char dot1 = ',';
+		char dot2 = '\n';
+		if (i < (Num - 1)) dot = dot1;
+		else dot = dot2;
+		printf("%d%c", Draw[i], dot);
+	}
+	int Correct; //兌獎參數。
+	Correct = 0; //初始化避免產生警告C6001。
+	for (i = 0; i < Num; i++) //進行兌獎。
+	{
+		for (j = 0; j < Num; j++)
+		{
+			if (Yours[i] == Draw[j]) Correct++;
+			else Correct = Correct;
+		}
+	}
+	printf("共對中%d個數字", Correct); //輸出兌獎結果。
+}
