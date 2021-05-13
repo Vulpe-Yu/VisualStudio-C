@@ -1,0 +1,20 @@
+#include <stdio.h>
+#include <stdlib.h>
+int factorial(int); //宣告副函式，格式：副函式類型 副函式名稱(所需變數類型)。
+
+int main()
+{
+	int x, y;
+	printf("階乘數：");
+	scanf_s("%d", &x);
+	y = factorial(x);
+	printf("%d！=%d", x, y);
+}
+
+int factorial(int n)
+{
+	if (n == 0)return 1; //0階乘為1，數值副函式需return運算結果。
+	else return factorial(n - 1) * n; //以遞迴副函式進行計算。
+}
+
+//遞迴副函式：副函式中可呼叫副函式自身。
