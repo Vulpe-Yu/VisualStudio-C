@@ -1,0 +1,19 @@
+#include <stdio.h>
+#include <stdlib.h> //內含亂數產生器功能。
+
+int main()
+{
+	int x, Max, Num, i;
+	printf("亂數範圍：1~");
+	scanf_s("%d", &Max);
+	printf("產生亂數個數：");
+	scanf_s("%d", &Num);
+	printf("亂數結果：");
+	for (i = 1; i < Num; i++)
+	{
+		x = 1 + rand() % Max; //rand()%n可產生0～n-1間的任意亂數。
+		printf("%d、", x);
+	}
+	x = 1 + rand() % Max;
+	printf("%d。", x);
+}
