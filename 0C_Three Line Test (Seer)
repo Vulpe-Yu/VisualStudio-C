@@ -1,0 +1,136 @@
+#include <stdio.h>
+#include <stdlib.h> //內含亂數產生器功能。
+#include <time.h> //內含時間序列功能。
+
+int main()
+{
+	int i;
+	unsigned seed;
+	seed = (unsigned)time(NULL); //取得時間序列。
+	srand(seed); //以時間序列當亂數種子，避免亂數結果相同。
+	int Random[12]; //亂數暫存，依序為四狼、預言家、女巫、獵人、守衛、四民。
+
+	printf("=====預言家視角三行三角定律測試=====\n");
+	printf("Hint：若不驗人想直接對答案，請輸入0。\n");
+	printf("\n");
+
+	for (i = 0; i < 12; i++) //決定坑位。
+	{
+		int Error = 0; //作為識別是否重複發牌用。
+		Random[i] = 1 + rand() % 12;
+		for (int j = 0; j < i; j++) //確認是否與已經開出之數字有重複。
+		{
+			if (Random[i] == Random[j]) Error++; //若有重複，Error=1。
+		}
+		if (Error != 0) i--; //重複，重新抽取。
+	}
+
+	printf("預言家：%d號位\n", Random[4]);
+	int Y1;
+FirstNight:;
+	printf("第一驗：");
+	scanf_s("%d", &Y1);
+	if (Y1 >= 13)
+	{
+		printf("Error.\n");
+		goto FirstNight;
+	}
+	else if (Y1 == 0) goto Result;
+	else
+	{
+		for (i = 0; i < 12; i++)
+		{
+			if (Random[i] == Y1) break;
+		}
+		if (i <= 3) printf("%d號為查殺。\n", Y1);
+		else printf("%d號為金水。\n", Y1);
+	}
+	int RandomPick;
+	RandomPick = rand() % 4;
+	printf("悍跳狼為%d號。\n", Random[RandomPick]);
+	int Y2;
+SecondNight:;
+	printf("第二驗：");
+	scanf_s("%d", &Y2);
+	if (Y2 >= 13)
+	{
+		printf("Error.\n");
+		goto SecondNight;
+	}
+	else if (Y2 == 0) goto Result;
+	else
+	{
+		for (i = 0; i < 12; i++)
+		{
+			if (Random[i] == Y2) break;
+		}
+		if (i <= 3) printf("%d號為查殺。\n", Y2);
+		else printf("%d號為金水。\n", Y2);
+	}
+	int Y3;
+ThirdNight:;
+	printf("第三驗：");
+	scanf_s("%d", &Y3);
+	if (Y3 >= 13)
+	{
+		printf("Error.\n");
+		goto ThirdNight;
+	}
+	else if (Y3 == 0) goto Result;
+	else
+	{
+		for (i = 0; i < 12; i++)
+		{
+			if (Random[i] == Y3) break;
+		}
+		if (i <= 3) printf("%d號為查殺。\n", Y3);
+		else printf("%d號為金水。\n", Y3);
+	}
+	int Y4;
+FourthNight:;
+	printf("第四驗：");
+	scanf_s("%d", &Y4);
+	if (Y4 >= 13)
+	{
+		printf("Error.\n");
+		goto FourthNight;
+	}
+	else if (Y4 == 0) goto Result;
+	else
+	{
+		for (i = 0; i < 12; i++)
+		{
+			if (Random[i] == Y4) break;
+		}
+		if (i <= 3) printf("%d號為查殺。\n", Y4);
+		else printf("%d號為金水。\n", Y4);
+	}
+	int Y5;
+FifthNight:;
+	printf("第五驗：");
+	scanf_s("%d", &Y5);
+	if (Y5 >= 13)
+	{
+		printf("Error.\n");
+		goto FifthNight;
+	}
+	else if (Y5 == 0) goto Result;
+	else
+	{
+		for (i = 0; i < 12; i++)
+		{
+			if (Random[i] == Y5) break;
+		}
+		if (i <= 3) printf("%d號為查殺。\n", Y5);
+		else printf("%d號為金水。\n", Y5);
+	}
+Result:;
+	printf("=====本局身分=====\n");
+	printf("狼人：%d、%d、%d、%d\n", Random[0], Random[1], Random[2], Random[3]);
+	printf("預言家：%d\n", Random[4]);
+	printf("女巫：%d\n", Random[5]);
+	printf("獵人：%d\n", Random[6]);
+	printf("守衛：%d\n", Random[7]);
+	printf("平民：%d、%d、%d、%d\n", Random[8], Random[9], Random[10], Random[11]);
+
+}
