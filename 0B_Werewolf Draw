@@ -1,0 +1,48 @@
+#include <stdio.h>
+#include <stdlib.h> //內含亂數產生器功能。
+#include <time.h> //內含時間序列功能。
+
+int main()
+{
+	unsigned seed;
+	seed = (unsigned)time(NULL); //取得時間序列。
+	srand(seed); //以時間序列當亂數種子，避免亂數結果相同。
+        int Random[12]; //亂數暫存。
+	int Werewolf[4]; //四狼陣列。
+	int Seer; //預言家。
+	int Witch; //女巫。
+	int Hunter; //獵人。
+	int Savior; //守衛。
+	int Villager[4]; //四民陣列。
+
+	for (int i = 0; i < 12; i++) //決定坑位。
+	{
+		int Error = 0; //作為識別是否重複發牌用。
+		Random[i] = 1 + rand() % 12;
+		for (int j = 0; j < i; j++) //確認是否與已經開出之數字有重複。
+		{
+			if (Random[i] == Random[j]) Error++; //若有重複，Error=1。
+		}
+		if (Error != 0) i--; //重複，重新抽取。
+	}
+
+	for (int i = 0; i < 4; i++) //狼位。
+	{
+		Werewolf[i] = Random[i];
+	}
+	Seer = Random[4];
+	Witch = Random[5];
+	Hunter = Random[6];
+	Savior = Random[7];
+	for (int i = 0; i < 4; i++) //民位。
+	{
+		Villager[i] = Random[i+8];
+	}
+
+	printf("狼人：%d、%d、%d、%d\n", Werewolf[0], Werewolf[1], Werewolf[2], Werewolf[3]);
+	printf("預言家：%d\n", Seer);
+	printf("女巫：%d\n", Witch);
+	printf("獵人：%d\n", Hunter);
+	printf("守衛：%d\n", Savior);
+	printf("村民：%d、%d、%d、%d\n", Villager[0], Villager[1], Villager[2], Villager[3]);
+}
