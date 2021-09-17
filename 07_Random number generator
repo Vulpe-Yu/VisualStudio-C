@@ -1,8 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h> //內含亂數產生器功能。
+#include <time.h> //內含時間序列功能。
 
 int main()
 {
+	unsigned seed;
+	seed = (unsigned)time(NULL); //取得時間序列。
+	srand(seed); //以時間序列當亂數種子，避免亂數結果相同。
 	int x, Max, Num, i;
 	printf("亂數範圍：1~");
 	scanf_s("%d", &Max);
